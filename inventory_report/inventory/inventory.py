@@ -14,7 +14,7 @@ class Inventory:
             data = Inventory.json_open(path)
         if path.endswith('xml'):
             data = Inventory.xml_open(path)
-       
+
         if report_type == 'simples':
             return SimpleReport.generate(data)
 
@@ -31,7 +31,7 @@ class Inventory:
     def json_open(filepath):
         with open(filepath) as file:
             return json.load(file)
-    
+
     @staticmethod
     def xml_open(filepath):
         with open(filepath) as file:
