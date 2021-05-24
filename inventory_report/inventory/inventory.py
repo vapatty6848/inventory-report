@@ -17,8 +17,7 @@ class Inventory:
 
         if report_type == 'simples':
             return SimpleReport.generate(data)
-
-        if report_type == 'completo':
+        else:
             return CompleteReport.generate(data)
 
     @staticmethod
