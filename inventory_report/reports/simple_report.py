@@ -138,7 +138,3 @@ class SimpleReport:
             + "Empresa com maior quantidade de produtos estocados: "
             f"{company_name}\n"
         )
-
-
-results = SimpleReport.generate(mock_inventory)
-print(results)
