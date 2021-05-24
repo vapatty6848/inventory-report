@@ -28,4 +28,3 @@ class SimpleReport:
         return (
           f"{fab_date}{valid_date}{stock_quantity} {stock_counter[0][0]}\n"
         )
-        
