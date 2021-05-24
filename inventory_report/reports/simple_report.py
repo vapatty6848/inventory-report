@@ -25,4 +25,7 @@ class SimpleReport:
         fab_date = f"Data de fabricação mais antiga: {oldest}\n"
         valid_date = f"Data de validade mais próxima: {next_to_expire}\n"
         stock_quantity = "Empresa com maior quantidade de produtos estocados:"
-        return f"{fab_date}{valid_date}{stock_quantity} {stock_counter[0][0]}\n"
+        return (
+          f"{fab_date}{valid_date}{stock_quantity} {stock_counter[0][0]}\n"
+        )
+        
