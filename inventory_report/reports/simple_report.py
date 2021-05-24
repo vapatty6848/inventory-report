@@ -8,6 +8,7 @@ class SimpleReport:
         validade_mais_proxima = produtos[0]["data_de_validade"]
         dataAtual = datetime.now().isoformat()
         empresas = []
+        textLabelEmp = "Empresa com maior quantidade de produtos estocados:"
 
         for produto in produtos:
             validade = produto["data_de_validade"]
@@ -24,6 +25,8 @@ class SimpleReport:
         self.labelFabricacao = (
             f"Data de fabricação mais antiga: {fabricacao_mais_antiga}\n"
         )
-        self.labelEmpresa = f"Empresa com maior quantidade de produtos estocados: {max(empresas)}\n"
+        self.labelEmpresa = (
+            f"{textLabelEmp} {max(empresas)}\n"
+        )
 
         return self.labelFabricacao + self.labelValidade + self.labelEmpresa
