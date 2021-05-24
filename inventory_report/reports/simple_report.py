@@ -2,13 +2,13 @@ from datetime import datetime
 
 
 class SimpleReport:
-    def generate(list):
+    def generate(list_data):
         today = datetime.today().strftime('%Y-%m-%d')
-        older = list[0]["data_de_fabricacao"]
+        older = list_data[0]["data_de_fabricacao"]
         validity_list = [today]
         company_list = []
         init = 0
-        for info in list:
+        for info in list_data:
             factory = info["data_de_fabricacao"]
             validity = info["data_de_validade"]
             company = info["nome_da_empresa"]
