@@ -12,15 +12,6 @@ def get_oldest_fabrication_date(stock):
     return min([stock_item["data_de_fabricacao"] for stock_item in stock])
 
 
-def get_time_differece(today, date):
-    print(today)
-    # print(date)
-    if today > date:
-        print(today - date)
-    else:
-        print(date - today)
-
-
 def get_nearest_expire_date(stock):
     today = str(datetime.now())
 

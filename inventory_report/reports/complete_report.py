@@ -10,4 +10,4 @@ class CompleteReport(SimpleReport):
         return report_return + "\n" + company_stock_item
 
 
-print(CompleteReport.generate(mocked_stock))
+
