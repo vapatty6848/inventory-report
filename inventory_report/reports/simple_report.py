@@ -79,7 +79,7 @@ class SimpleReport:
         company_list = Counter(company_names)
 
         self.counter = company_list
-        
+
         inventory = company_list.most_common()[0][0].strip()
 
         r1 = f"Data de fabricação mais antiga: {oldest_creation}"
