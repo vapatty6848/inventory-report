@@ -1,5 +1,6 @@
 from datetime import datetime
 from collections import Counter
+from abc import abstractmethod
 
 # dict_list = [
 #         {
@@ -42,9 +43,13 @@ from collections import Counter
 
 
 class SimpleReport:
-    # def __init__(self):
-    @staticmethod
-    def generate(dict_list):
+    def __init__(self):
+        self.report = ''
+        self.counter = ''
+
+    # @staticmethod
+    @abstractmethod
+    def generate(self, dict_list):
         dates_of_creation = []
         dates_of_expiration = []
         company_names = []
@@ -72,6 +77,9 @@ class SimpleReport:
         closest_expiration = dates_of_expiration[0].strip()
 
         company_list = Counter(company_names)
+
+        self.counter = company_list
+        
         inventory = company_list.most_common()[0][0].strip()
 
         r1 = f"Data de fabricação mais antiga: {oldest_creation}"
@@ -82,6 +90,7 @@ class SimpleReport:
 
         report = f"{r1}\n{r2}\n{r3}\n"
 
+        self.report = report
         return report
 
 
