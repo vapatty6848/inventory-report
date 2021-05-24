@@ -1,8 +1,9 @@
 from datetime import date
 from collections import Counter
+from abc import ABC
 
 
-class SimpleReport:
+class SimpleReport(ABC):
     @staticmethod
     def generate(lista_produtos):
         fabricacao = SimpleReport.data_fabricacao_antiga(lista_produtos)
