@@ -46,12 +46,10 @@ class CompleteReport(SimpleReport):
         self.counter = super().counter
         self.report = super().report
 
-
     def generate(self, dict_list):
         self.report = self.generate(self, dict_list)
         # print(self.generate(self, dict_list))
         print(self.counter)
-
 
 
 CompleteReport.generate(SimpleReport, dict_list)
