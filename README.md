@@ -52,7 +52,7 @@ Nesse projeto, você será capaz de:
   - Projeto individual;
 
   - Serão `2` dias de projeto.
-  - Data de entrega para avaliação final do projeto: `07/06/2021 - 14:00h`.
+  - Data de entrega para avaliação final do projeto: `01/06/2021 - 14:00h`.
 
 ---
 
