@@ -30,12 +30,17 @@ def get_next_to_expire(my_list):
     return next_expire.date()
 
 
-def get_largest_stock(my_list):
+def get_stock(my_list):
     companies_list = {}
     for item in my_list:
         company = item["nome_da_empresa"]
         companies_list.setdefault(company, 0)
         companies_list[company] += 1
 
+    return companies_list
+
+
+def get_largest_stock(my_list):
+    companies_list = get_stock(my_list)
     companies_sort = sorted(companies_list, reverse=True)
     return str(companies_sort[0])
