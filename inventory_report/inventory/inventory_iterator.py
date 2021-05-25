@@ -1,5 +1,6 @@
 from collections.abc import Iterator
 
+
 class InventoryIterator(Iterator):
     def __init__(self, stock):
         self.stock = stock
@@ -10,6 +11,6 @@ class InventoryIterator(Iterator):
             current_item = self.stock[self.index]
         except IndexError:
             raise StopIteration()
-        else:       
+        else:
             self.index += 1
-            return current_item   
+            return current_item
