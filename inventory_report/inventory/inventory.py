@@ -27,7 +27,8 @@ class Inventory:
             for child in root.iter("record"):
                 item = {}
                 for record_child in child.iter('*'):
-                    item[record_child.tag] = record_child.text
+                    if record_child.tag != 'record':
+                        item[record_child.tag] = record_child.text
                 inventory_list.append(item)
             return inventory_list
 
