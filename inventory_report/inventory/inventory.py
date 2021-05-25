@@ -1,5 +1,6 @@
 import csv
 import json
+import xml.etree.ElementTree as ET
 from inventory_report.reports.complete_report import CompleteReport
 from inventory_report.reports.simple_report import SimpleReport
 
@@ -17,12 +18,30 @@ def read_json(caminho):
         return json.load(file)
 
 
+def read_xml(caminho):
+    '''Lê um arquivo XML o qual o caminho é passado como parâmetro'''
+    '''ref: datacamp;com / tutorial / Python XML with ElementTree'''
+    root = ET.parse(caminho).getroot()
+    relatorio = []
+    for child in root:
+        dict_format = {}
+        for tag in child:
+            # print(tag)
+            # print(tag.text)
+            # print(tag.tag)
+            dict_format[tag.tag] = tag.text
+        relatorio.append(dict_format)
+    return relatorio
+
+
 def choose_reader(caminho):
     '''Verifica qual a extensão do arquivo antes de ler o relatório'''
     if caminho.endswith(".csv"):
         return read_csv(caminho)
     elif caminho.endswith(".json"):
         return read_json(caminho)
+    elif caminho.endswith(".xml"):
+        return read_xml(caminho)
     else:
         return False
 
