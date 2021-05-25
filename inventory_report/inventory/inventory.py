@@ -26,9 +26,6 @@ def read_xml(caminho):
     for child in root:
         dict_format = {}
         for tag in child:
-            # print(tag)
-            # print(tag.text)
-            # print(tag.tag)
             dict_format[tag.tag] = tag.text
         relatorio.append(dict_format)
     return relatorio
