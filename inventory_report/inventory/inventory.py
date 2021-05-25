@@ -1,37 +1,10 @@
-from inventory_report.reports.simple_report import SimpleReport
-from inventory_report.reports.complete_report import CompleteReport
 import csv
 import json
-import xml.etree.ElementTree as ET
 
-
-def parse_xml(file):
-    tree = ET.parse(file)
-    root = tree.getroot()
-
-    records = root.findall('record')
-
-    items = []
-
-    for record in records:
-        item_dict = {}
-
-        for node in record.iter():
-            item_dict[node.tag] = node.text
-
-        items.append(item_dict)
-
-    return items
-
-
-def get_file_extension(file_path):
-    file_pieces = file_path.split('.')
-    file_pieces.reverse()
-
-    file_extension = file_pieces[0]
-
-    return file_extension
-
+from inventory_report.reports.simple_report import SimpleReport
+from inventory_report.reports.complete_report import CompleteReport
+from inventory_report.utils.file_extension_parser import get_file_extension
+from inventory_report.utils.parse_xml import parse_xml
 
 extension_to_reader = {
     'json': json.load,
@@ -40,16 +13,15 @@ extension_to_reader = {
 }
 
 class Inventory:
-
     @staticmethod
     def import_data(file_path, method):
         products = []
 
-        with open(file_path) as csvfile:
+        with open(file_path) as file:
             extension = get_file_extension(file_path)
             reader = extension_to_reader[extension]
 
-            products = list(reader(csvfile))
+            products = list(reader(file))
 
             simple_method = method == 'simples'
             Reporter = SimpleReport if simple_method else CompleteReport
