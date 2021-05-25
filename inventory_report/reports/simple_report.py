@@ -3,14 +3,19 @@ from datetime import date
 
 
 class SimpleReport:
-    @staticmethod
-    def generate(products_list):
+    @classmethod
+    def products_per_company(cls, products_list):
+        nome_empresa = []
+        for nome in products_list:
+            nome_empresa.append(nome["nome_da_empresa"])
+        listagem = Counter(nome_empresa)
+        return listagem
+
+    @classmethod
+    def generate(cls, products_list):
         date_today = date.today()
         base_date = 10000
         data_fabricacao = "2021-05-20"
-        data_validade = "1900-01-01"
-        nome_empresa = []
-        data_validade = '1990-05-20'
         for product in products_list:
             if(product["data_de_fabricacao"] < data_fabricacao):
                 data_fabricacao = product["data_de_fabricacao"]
@@ -22,10 +27,11 @@ class SimpleReport:
             if(difference.days < base_date) and (difference.days > 0):
                 data_validade = product["data_de_validade"]
                 base_date = difference.days
-            nome_empresa.append(product["nome_da_empresa"])
 
-        most_commom_company = Counter(nome_empresa).most_common(1)[0][0]
-        line1 = f"Data de fabricação mais antiga: {data_fabricacao}"
-        line2 = f"Data de validade mais próxima: {data_validade}"
-        line3 = "Empresa com maior quantidade de produtos estocados: "
-        return f"{line1}\n{line2}\n{line3}{most_commom_company}\n"
+        list_of_companies = cls.products_per_company(products_list)
+        most_common_company = list_of_companies.most_common(1)[0][0]
+
+        return (f"Data de fabricação mais antiga: {data_fabricacao}\n"
+                + f"Data de validade mais próxima: {data_validade}\n"
+                + "Empresa com maior quantidade de produtos estocados: "
+                + f"{most_common_company}\n")
