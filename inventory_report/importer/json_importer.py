@@ -11,4 +11,4 @@ class JsonImporter(Importer):
                 file_as_array = json.load(output)
                 return file_as_array
         else:
-            raise ValueError("arquivo inválido")
+            raise ValueError("Arquivo inválido")

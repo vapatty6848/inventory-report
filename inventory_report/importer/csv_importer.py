@@ -12,4 +12,4 @@ class CsvImporter(Importer):
                 file_as_array = [item for item in reader]
                 return file_as_array
         else:
-            raise ValueError("arquivo inválido")
+            raise ValueError("Arquivo inválido")
