@@ -46,7 +46,8 @@ mocked_stock = [
 
 
 class SimpleReport:
-    def generate(stock):
+    @classmethod
+    def generate(cls, stock):
         company = get_company_with_most_items(stock)
         oldest_fabrication_date = get_oldest_fabrication_date(stock)
         nearest_expire_date = get_nearest_expire_date(stock)
@@ -59,5 +60,3 @@ class SimpleReport:
 
         return return_text
 
-
-SimpleReport.generate(mocked_stock)

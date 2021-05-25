@@ -1,30 +1,20 @@
-import csv
-import json
-import xmltodict
 from inventory_report.reports.simple_report import SimpleReport
 from inventory_report.reports.complete_report import CompleteReport
-
+from inventory_report.importer.csv_importer import CsvImporter
+from inventory_report.importer.json_importer import JsonImporter
+from inventory_report.importer.xml_importer import XmlImporter
 
 class Inventory:
     @classmethod
     def import_data(cls, file_path, report_type):
         file_extension = file_path.split(".")[1]
         if file_extension == "csv":
-            with open(file_path) as output:
-                reader = csv.DictReader(output)
-                file_as_array = [item for item in reader]
-            return cls.generate_report(report_type, file_as_array)
+            file_as_array = CsvImporter.import_data(file_path)
         elif file_extension == "json":
-            with open(file_path) as output:
-                file_as_array = json.load(output)
-            return cls.generate_report(report_type, file_as_array)
-
+            file_as_array = JsonImporter.import_data(file_path)
         else:
-            with open(file_path) as output:
-                file_as_array = xmltodict.parse(output.read())["dataset"][
-                    "record"
-                ]
-            return cls.generate_report(report_type, file_as_array)
+            file_as_array = XmlImporter.import_data(file_path)
+        return cls.generate_report(report_type, file_as_array)
 
     @classmethod
     def generate_report(cls, report_type, file_as_array):
