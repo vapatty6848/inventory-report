@@ -1,6 +1,8 @@
 from inventory_report.reports.simple_report import SimpleReport
 from inventory_report.reports.complete_report import CompleteReport
 import csv
+import json
+import xmltodict
 
 
 class Inventory:
@@ -15,11 +17,40 @@ class Inventory:
             return list(reader)
 
     @classmethod
-    def import_data(cls, csv_file, type):
-        csv_content = cls.read_csv(csv_file)
+    def read_json(cls, json_file):
+        with open(json_file) as jsonfile:
+            reader = json.load(jsonfile)
+            return list(reader)
+
+    @classmethod
+    def read_xml(cls, xml_file):
+        with open(xml_file, 'r') as xmlfile:
+            data_dict = xmltodict.parse(xmlfile.read())
+            json_file = json.dumps(data_dict)
+            return json.loads(json_file)['dataset']['record']
+
+    @classmethod
+    def import_data(cls, file, type):
         simple_report = SimpleReport
         complete_report = CompleteReport
-        if type == "simples":
-            return simple_report.generate(csv_content)
-        if type == "completo":
-            return complete_report.generate(csv_content)
+        if file.endswith(".csv"):
+            result = Inventory.read_csv(file)
+            if type == "simples":
+                return simple_report.generate(result)
+            if type == "completo":
+                return complete_report.generate(result)
+        if file.endswith(".json"):
+            result = Inventory.read_json(file)
+            if type == "simples":
+                return simple_report.generate(result)
+            if type == "completo":
+                return complete_report.generate(result)
+        if file.endswith(".xml"):
+            result = Inventory.read_xml(file)
+            if type == "simples":
+                return simple_report.generate(result)
+            if type == "completo":
+                return complete_report.generate(result)
+
+
+print(Inventory.read_xml('inventory_report/data/inventory.xml'))
