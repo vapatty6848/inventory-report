@@ -1,13 +1,17 @@
-# import csv
-# import json
-# import xml.etree.ElementTree as ET
-# from collections.abc import Iterator
-# from inventory_report.reports.simple_report import SimpleReport
-# from inventory_report.reports.complete_report import CompleteReport
-# from inventory_report.inventory.inventory import Inventory
+from collections.abc import Iterator
 
 
-# class InventoryIterator(Iterator):
-#     @classmethod
-#     def __iter__(self, iterable):
-#         self.iterable = iterable
+class InventoryIterator(Iterator):
+    @classmethod
+    def __init__(self, iterable):
+        self.iterable = iterable
+        self.position = 0
+
+    def __next__(self):
+        try:
+            current_value = self.iterable[self.position]
+        except IndexError:
+            raise StopIteration()
+        else:
+            self.position += 1
+            return current_value
