@@ -51,6 +51,3 @@ class Inventory:
             return SimpleReport.generate(array)
         elif type == "completo":
             return CompleteReport.generate(array)
-print(Inventory.import_data("inventory_report/data/inventory.csv", "completo"))
-# print(Inventory.import_data("inventory_report/data/inventory.json", "completo"))
-# print(Inventory.import_data("inventory_report/data/inventory.xml", "completo"))
