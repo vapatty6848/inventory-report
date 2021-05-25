@@ -6,4 +6,3 @@ class XmlImporter(Importer):
     def import_data(self, caminho):
         if not caminho.endswith(".xml"):
             raise ValueError("Arquivo inválido")
-        return Importer.choose_reader(caminho)
