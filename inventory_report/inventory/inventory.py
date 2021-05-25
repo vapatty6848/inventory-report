@@ -36,6 +36,6 @@ class Inventory:
     def leitor_xml(path):
         with open(path) as file:
             parser = XMLtoDict()
-            content = parser.value_from_nest(".*record", file)
-            # content = parser.parse(file)
+            xml_file = file.read()
+            content = parser.value_from_nest("record", xml_file)
             return content
