@@ -1,3 +1,7 @@
-# from inventory_report.inventory.simple_report import Inventory
+from abc import ABC, abstractmethod
 
-# class Importer():
+
+class Importer(ABC):
+    @abstractmethod
+    def import_data(self, file):
+        raise NotImplementedError

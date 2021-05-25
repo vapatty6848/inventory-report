@@ -32,7 +32,7 @@ def read_xml(path):
     myList = []
     for i in range(0, len(listOfId)):
         obj = {
-            "id": listOfId[i],
+            "id": listOfId[i].text,
             "nome_do_produto": listOfNomeProduto[i].text,
             "nome_da_empresa": listOfNomeEmpresa[i].text,
             "data_de_fabricacao": listOfFabricacao[i].text,
