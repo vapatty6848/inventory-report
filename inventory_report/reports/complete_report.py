@@ -3,6 +3,7 @@ from inventory_report.reports.simple_report import SimpleReport
 
 class CompleteReport(SimpleReport):
     @classmethod
+    
     def generate(self, data):
         conjunto_empresa_valor = []
 
