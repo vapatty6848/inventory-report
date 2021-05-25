@@ -59,4 +59,3 @@ class SimpleReport:
         )
 
         return return_text
-

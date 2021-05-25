@@ -1,6 +1,7 @@
 import xmltodict
 from .importer import Importer
 
+
 class XmlImporter(Importer):
     @classmethod
     def import_data(cls, file_path):
@@ -10,6 +11,6 @@ class XmlImporter(Importer):
                 file_as_array = xmltodict.parse(output.read())["dataset"][
                     "record"
                 ]
-                return file_as_array    
+                return file_as_array
         else:
             raise ValueError("arquivo inválido")

@@ -1,6 +1,7 @@
 import json
 from .importer import Importer
 
+
 class JsonImporter(Importer):
     @classmethod
     def import_data(cls, file_path):
@@ -11,4 +12,3 @@ class JsonImporter(Importer):
                 return file_as_array
         else:
             raise ValueError("arquivo inválido")
-          
