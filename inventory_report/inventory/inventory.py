@@ -27,8 +27,10 @@ class Inventory:
 
         else:
             with open(file_path) as output:
-                file_as_array = xmltodict.parse(output.read())
-                print(file_as_array)
-
-
-print(Inventory.import_data("inventory_report/data/inventory.xml", "simples"))
+                file_as_array = xmltodict.parse(output.read())["dataset"][
+                    "record"
+                ]
+                if report_type == "simples":
+                    return SimpleReport.generate(file_as_array)
+                else:
+                    return CompleteReport.generate(file_as_array)
