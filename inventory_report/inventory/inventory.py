@@ -7,10 +7,11 @@ from inventory_report.utils.file_extension_parser import get_file_extension
 from inventory_report.utils.parse_xml import parse_xml
 
 extension_to_reader = {
-    'json': json.load,
-    'csv': csv.DictReader,
-    'xml': parse_xml,
+    "json": json.load,
+    "csv": csv.DictReader,
+    "xml": parse_xml,
 }
+
 
 class Inventory:
     @staticmethod
@@ -23,11 +24,9 @@ class Inventory:
 
             products = list(reader(file))
 
-            simple_method = method == 'simples'
+            simple_method = method == "simples"
             Reporter = SimpleReport if simple_method else CompleteReport
 
             answer = Reporter.generate(products)
 
             return answer
-
-

@@ -1,5 +1,6 @@
 from collections.abc import Iterator
 
+
 class InventoryIterator(Iterator):
     def __iter__(self):
         self.product_index = 0
