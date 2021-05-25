@@ -25,11 +25,14 @@ def get_nearest_expire_date(stock):
 
     return nearest_expire_date
 
+
 def get_stocked_by_company(stock):
 
-    companies_by_stock =  Counter([stock_item["nome_da_empresa"] for stock_item in stock])
+    companies_by_stock = Counter(
+        [stock_item["nome_da_empresa"] for stock_item in stock]
+    )
     companies_stock_items = companies_by_stock.items()
-    acumulator_item = 'Produtos estocados por empresa: \n'
+    acumulator_item = "Produtos estocados por empresa: \n"
     for item in companies_stock_items:
         company_stock_string = f"- {item[0]}: {item[1]}\n"
         acumulator_item += company_stock_string
