@@ -1,55 +1,20 @@
-import csv
-import json
-from lxml import etree
 from inventory_report.reports.complete_report import CompleteReport
 from inventory_report.reports.simple_report import SimpleReport
+from inventory_report.importer.csv_importer import CsvImporter
+from inventory_report.importer.json_importer import JsonImporter
+from inventory_report.importer.xml_importer import XmlImporter
 
 
 class Inventory:
     @classmethod
-    def _csvImporter(cls, file_path):
-        content_list = []
-        with open(file_path, newline='') as csvfile:
-            content = csv.DictReader(csvfile, delimiter=",")
-            for curr_dict in content:
-                current = {}
-                for key in curr_dict:
-                    current[key] = curr_dict[key]
-                content_list.append(current)
-
-        return content_list
-
-    @classmethod
-    def _jsonImporter(cls, file_path):
-        content_list = []
-        with open(file_path, newline='') as jsonfile:
-            content_list = json.load(jsonfile)
-
-        return content_list
-
-    @classmethod
-    def _xmlImporter(cls, file_path):
-        content_list = []
-        with open(file_path, newline='') as xmlfile:
-            content = etree.parse(xmlfile)
-            root = content.getroot()
-            for child in root:
-                current = {}
-                for elem in child:
-                    current[elem.tag] = elem.text
-
-                content_list.append(current)
-        return content_list
-
-    @classmethod
     def _call_importer(cls, file_path):
         extension = file_path.split('.')[-1]
         if extension == 'csv':
-            return cls._csvImporter(file_path)
+            return CsvImporter.import_data(file_path)
         elif extension == 'json':
-            return cls._jsonImporter(file_path)
+            return JsonImporter.import_data(file_path)
         elif extension == 'xml':
-            return cls._xmlImporter(file_path)
+            return XmlImporter.import_data(file_path)
         else:
             return None
 
