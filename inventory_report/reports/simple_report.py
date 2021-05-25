@@ -3,6 +3,7 @@ from datetime import datetime
 
 
 class SimpleReport:
+    """Gera um relatório com os dados advindos do data"""
     @classmethod
     def generate(cls, data):
         """Busca a empresa que mais vezes aparece,"""
