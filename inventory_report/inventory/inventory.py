@@ -32,7 +32,7 @@ def read_xml(caminho):
 
 
 def choose_reader(caminho):
-    '''Verifica qual a extensão do arquivo antes de ler o relatório'''
+    '''Verifica qual a extensão do arquivo antes de ler o relatório '''
     if caminho.endswith(".csv"):
         return read_csv(caminho)
     elif caminho.endswith(".json"):
