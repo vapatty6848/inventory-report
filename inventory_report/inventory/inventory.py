@@ -1,5 +1,6 @@
 import csv
 import json
+from lxml import etree
 from inventory_report.reports.complete_report import CompleteReport
 from inventory_report.reports.simple_report import SimpleReport
 
@@ -10,10 +11,10 @@ class Inventory:
         content_list = []
         with open(file_path, newline='') as csvfile:
             content = csv.DictReader(csvfile, delimiter=",")
-            for row in content:
+            for curr_dict in content:
                 current = {}
-                for key in row:
-                    current[key] = row[key]
+                for key in curr_dict:
+                    current[key] = curr_dict[key]
                 content_list.append(current)
 
         return content_list
@@ -30,11 +31,13 @@ class Inventory:
     def _xmlImporter(cls, file_path):
         content_list = []
         with open(file_path, newline='') as xmlfile:
-            content = csv.DictReader(xmlfile, delimiter=",")
-            for row in content:
+            content = etree.parse(xmlfile)
+            root = content.getroot()
+            for child in root:
                 current = {}
-                for key in row:
-                    current[key] = row[key]
+                for elem in child:
+                    current[elem.tag] = elem.text
+
                 content_list.append(current)
         return content_list
 
@@ -51,11 +54,11 @@ class Inventory:
             return None
 
     @classmethod
-    def _generate_report(cls, content, report_type):
+    def _generate_report(cls, content_list, report_type):
         if report_type == "simples":
-            return SimpleReport.generate(content)
+            return SimpleReport.generate(content_list)
         elif report_type == "completo":
-            return CompleteReport.generate(content)
+            return CompleteReport.generate(content_list)
 
     @classmethod
     def import_data(cls, file_path, report_type):
