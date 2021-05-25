@@ -4,28 +4,12 @@ from datetime import datetime
 class SimpleReport:
     def generate(list_data):
         today = datetime.today().strftime('%Y-%m-%d')
-        older = list_data[0]["data_de_fabricacao"]
-        validity_list = [today]
-        company_list = []
-        init = 0
-        for info in list_data:
-            factory = info["data_de_fabricacao"]
-            validity = info["data_de_validade"]
-            company = info["nome_da_empresa"]
-            company_list.append(company)
-            validity_list.append(validity)
-            if (factory < older):
-                older = factory
-
-        for names in company_list:
-            count = company_list.count(names)
-            if (count > init):
-                init = count
-                name = names
-
-        sort = sorted(validity_list)
-        index = sort.index(today)
-        closest = sort[index + 1]
+        older = min([info["data_de_fabricacao"] for info in list_data])
+        closest = min([
+            info["data_de_validade"] for info in list_data
+            if info["data_de_validade"] > today
+        ])
+        name = max([info["nome_da_empresa"] for info in list_data])
 
         return (
             "Data de fabricação mais antiga: %s\n"

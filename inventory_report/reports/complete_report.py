@@ -4,13 +4,11 @@ from collections import Counter
 
 class CompleteReport(SimpleReport):
     def generate(list_data):
-        company_list = []
         result = ""
-        for company in list_data:
-            company_list.append(company["nome_da_empresa"])
-        test = Counter(company_list)
-        for info in test:
-            result += "- %s: %s\n" % (info, test[info])
+        company_list = [info["nome_da_empresa"] for info in list_data]
+        counter_list = Counter(company_list)
+        for info in counter_list:
+            result += "- %s: %s\n" % (info, counter_list[info])
         return (
             "%s\n"
             "Produtos estocados por empresa: \n"
