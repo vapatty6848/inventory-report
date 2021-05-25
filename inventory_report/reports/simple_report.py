@@ -2,7 +2,8 @@ from statistics import mode
 from datetime import datetime
 
 
-class SimpleReport:    
+class SimpleReport:
+    @classmethod
     def generate(self, data):
         date_now = datetime.now()
         nomes_das_empresas = []
