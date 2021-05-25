@@ -61,8 +61,3 @@ class CompleteReport(SimpleReport):
             "Produtos estocados por empresa: \n"
             f"{CompleteReport.count_inventory(list_inventory)}"
         )
-
-
-results = CompleteReport.generate(mock_inventory)
-print(results)
-# counter = CompleteReport.count_inventory(mock_inventory)
