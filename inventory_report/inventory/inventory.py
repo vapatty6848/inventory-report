@@ -9,7 +9,7 @@ from inventory_report.reports.complete_report import CompleteReport
 class Inventory:
     def __init__(
         self,
-        path='/home/danielmjales/Desktop/trybe/projects/sd-06-inventory-report/inventory_report/data/inventory.xml',
+        path='',
         reportType='naLA'
     ):
         self.path = path
