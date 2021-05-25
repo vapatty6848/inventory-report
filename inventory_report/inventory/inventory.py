@@ -26,8 +26,8 @@ class Inventory:
             root = xml_tree.getroot()
             for child in root.iter("record"):
                 item = {}
-                for record_child in child.iter('*'):
-                    if record_child.tag != 'record':
+                for record_child in child.iter("*"):
+                    if record_child.tag != "record":
                         item[record_child.tag] = record_child.text
                 inventory_list.append(item)
             return inventory_list
