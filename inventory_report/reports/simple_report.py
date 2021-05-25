@@ -39,7 +39,7 @@ def company_biggest_stocker(produtos):
 class SimpleReport:
     @classmethod
     def generate(self, produtos):
-        '''Método generate monta o relatório'''
+        '''Método generate monta o relatório simples'''
         mais_antigo = the_oldest_one(produtos)
         proximo_a_expirar = next_to_expire(produtos)
         empresa_maior_estoque = company_biggest_stocker(produtos)
