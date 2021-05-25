@@ -9,12 +9,12 @@ def main():
     if len(sys.argv) < 3:
         return print("Verifique os argumentos", file=sys.stderr)
     else:
-        _, path, report_type = sys.argv
-        if path.endswith('.csv'):
+        _, file_path, report_type = sys.argv
+        if file_path.endswith('.csv'):
             instance = InventoryRefactor(CsvImporter)
-        if path.endswith('.json'):
+        if file_path.endswith('.json'):
             instance = InventoryRefactor(JsonImporter)
-        if path.endswith('.xml'):
+        if file_path.endswith('.xml'):
             instance = InventoryRefactor(XmlImporter)
-        report = instance.import_data(path, report_type)
+        report = instance.import_data(file_path, report_type)
         print(report, end="")
