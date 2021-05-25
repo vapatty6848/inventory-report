@@ -13,24 +13,22 @@ class Inventory:
             with open(file_path) as output:
                 reader = csv.DictReader(output)
                 file_as_array = [item for item in reader]
-                if report_type == "simples":
-                    return SimpleReport.generate(file_as_array)
-                else:
-                    return CompleteReport.generate(file_as_array)
+            return cls.generate_report(report_type, file_as_array)  
         elif file_extension == "json":
             with open(file_path) as output:
                 file_as_array = json.load(output)
-                if report_type == "simples":
-                    return SimpleReport.generate(file_as_array)
-                else:
-                    return CompleteReport.generate(file_as_array)
+            return cls.generate_report(report_type, file_as_array)    
 
         else:
             with open(file_path) as output:
                 file_as_array = xmltodict.parse(output.read())["dataset"][
                     "record"
                 ]
-                if report_type == "simples":
-                    return SimpleReport.generate(file_as_array)
-                else:
-                    return CompleteReport.generate(file_as_array)
+            return cls.generate_report(report_type, file_as_array)    
+
+    @classmethod
+    def generate_report(cls, report_type, file_as_array):
+        if report_type == "simples":
+            return SimpleReport.generate(file_as_array)
+        else:
+            return CompleteReport.generate(file_as_array)
