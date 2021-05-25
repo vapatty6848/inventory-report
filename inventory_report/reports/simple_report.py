@@ -34,47 +34,71 @@ list_mock = [
 
 
 class DateHandler:
-    def __init__(self, date_list):
-        self.date_list = date_list
+    @classmethod
+    def maxDate(cls, dict_key, date_list):
+        cls.dict_key = dict_key
+        cls.date_list = date_list
 
-    def maxDate(self, dict_key):
-        self.dict_key = dict_key
-        list = [date[self.dict_key] for date in self.date_list]
+        list = [date[cls.dict_key] for date in cls.date_list]
         max_date = datetime.date(
             max([datetime.strptime(date, "%Y-%m-%d") for date in list])
         )
         result = datetime.strftime(max_date, "%Y-%m-%d")
         return result
 
-    def minDate(self, dict_key):
-        self.dict_key = dict_key
-        list = [date[self.dict_key] for date in self.date_list]
+    @classmethod
+    def minDate(cls, dict_key, date_list):
+        cls.dict_key = dict_key
+        cls.date_list = date_list
+
+        list = [date[cls.dict_key] for date in cls.date_list]
         min_date = datetime.date(
             min([datetime.strptime(date, "%Y-%m-%d") for date in list])
         )
         result = datetime.strftime(min_date, "%Y-%m-%d")
         return result
 
+    @classmethod
+    def closestDateFromNow(cls, dict_key, date_list):
+        cls.dict_key = dict_key
+        cls.date_list = date_list
+        now = str(datetime.now())
+
+        list = [
+            date[cls.dict_key]
+            for date in cls.date_list
+            if date[cls.dict_key] > now
+        ]
+        result = min(list)
+        return result
+
 
 class SimpleReport:
-    def __init__(self, document):
-        self.document = document
+    @classmethod
+    def generate(cls, document):
+        cls.document = document
+        companies_list = [item["nome_da_empresa"] for item in cls.document]
 
-    def generate(self):
-        date_class = DateHandler(self.document)
-        companies_list = [item["nome_da_empresa"] for item in self.document]
+        oldest_fab_date = DateHandler.minDate(
+          "data_de_fabricacao",
+          cls.document
+        )
 
-        oldest_fab_date = date_class.minDate("data_de_fabricacao")
-        closest_expire_date = date_class.minDate("data_de_validade")
+        closest_expire_date = DateHandler.closestDateFromNow(
+            "data_de_validade",
+            cls.document
+        )
         lrgst_storage = mode(companies_list)
 
-        return ({
-          "Data de fabricação mais antiga": oldest_fab_date,
-          "Data de validade mais próxima": closest_expire_date,
-          "Empresa com maior quantidade de produtos estocados": lrgst_storage,
-        })
+        result = (
+"""Data de fabricação mais antiga: {}
+Data de validade mais próxima: {}
+Empresa com maior quantidade de produtos estocados: {}
+""".format(oldest_fab_date, closest_expire_date, lrgst_storage))
+
+        return result
 
 
-new_report = SimpleReport(list_mock)
+report = SimpleReport.generate(list_mock)
 
-print(new_report.generate())
+print(report)
