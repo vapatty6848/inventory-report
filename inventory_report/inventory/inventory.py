@@ -13,18 +13,18 @@ class Inventory:
             with open(file_path) as output:
                 reader = csv.DictReader(output)
                 file_as_array = [item for item in reader]
-            return cls.generate_report(report_type, file_as_array)  
+            return cls.generate_report(report_type, file_as_array)
         elif file_extension == "json":
             with open(file_path) as output:
                 file_as_array = json.load(output)
-            return cls.generate_report(report_type, file_as_array)    
+            return cls.generate_report(report_type, file_as_array)
 
         else:
             with open(file_path) as output:
                 file_as_array = xmltodict.parse(output.read())["dataset"][
                     "record"
                 ]
-            return cls.generate_report(report_type, file_as_array)    
+            return cls.generate_report(report_type, file_as_array)
 
     @classmethod
     def generate_report(cls, report_type, file_as_array):
