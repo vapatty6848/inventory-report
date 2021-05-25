@@ -6,9 +6,6 @@ import xmltodict
 
 
 class Inventory:
-    def __init__(self):
-        self.a = "teste 123"
-
     def simple_complex(data_list, data_type):
         if (data_type == "simples"):
             return SimpleReport.generate(data_list)
