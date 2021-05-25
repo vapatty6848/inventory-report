@@ -1,6 +1,29 @@
 from inventory_report.reports.simple_report import SimpleReport
+# from collections import Counter
 
-dict_list = [
+
+class CompleteReport(SimpleReport):
+
+    @staticmethod
+    def generate(dict_list):
+        # report = SimpleReport.generate(dict_list)
+
+        # inventory_by_company = "Produtos estocados por empresa:\n"
+        company_name = []
+
+        for item in dict_list:
+            company_name.append(item["nome_da_empresa"])
+
+        nomes_unicos = set(company_name)
+        nomes_unicos_dict = []
+        for name in nomes_unicos:
+            nomes_unicos_dict.append({name: 0})
+
+        print(nomes_unicos_dict)
+
+
+if __name__ == "__main__": 
+    dict_list = [
         {
             "id": 1,
             "nome_do_produto": "CALENDULA OFFICINALIS FLOWERING TOP",
@@ -39,17 +62,4 @@ dict_list = [
         },
     ]
 
-
-class CompleteReport(SimpleReport):
-    def __init__(self):
-        # self.counter = SimpleReport().counter
-        self.counter = super().counter
-        self.report = super().report
-
-    def generate(self, dict_list):
-        self.report = self.generate(self, dict_list)
-        # print(self.generate(self, dict_list))
-        print(self.counter)
-
-
-CompleteReport.generate(SimpleReport, dict_list)
+    CompleteReport.generate(dict_list)
