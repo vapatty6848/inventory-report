@@ -21,7 +21,7 @@ class SimpleReport:
         datas_de_validade.sort(
           key=lambda date: datetime.strptime(date, "%Y-%m-%d")
         )
-        empresa_maior_quantidade = mode(nomes_das_empresas)
+        empresa_maior_quantidade = mode(nomes_das_empresas)        
         return (
             f"Data de fabricação mais antiga: {datas_de_fabricacao[0]}" +
             f"\nData de validade mais próxima: {datas_de_validade[0]}" +
