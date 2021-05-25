@@ -13,7 +13,3 @@ class CsvImporter(Importer):
             return inventory_data
         else:
             raise ValueError("Arquivo inválido")
-
-
-result = CsvImporter()
-print(result.import_data('inventory_report/data/inventory.csv'))

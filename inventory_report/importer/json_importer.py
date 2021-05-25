@@ -11,7 +11,3 @@ class JsonImporter(Importer):
             return inventory_data_json
         else:
             raise ValueError("Arquivo inválido")
-
-
-result = JsonImporter()
-print(result.import_data('inventory_report/data/inventory.json'))

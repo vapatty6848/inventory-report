@@ -14,6 +14,3 @@ class InventoryIterator(Iterator):
         else:
             self._index += 1
             return current_value
-
-    def generate(self):
-        return "vai retornar o relatório formatado como uma string"

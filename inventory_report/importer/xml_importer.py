@@ -17,7 +17,3 @@ class XmlImporter(Importer):
             return inventory_data
         else:
             raise ValueError("Arquivo inválido")
-
-
-result = XmlImporter()
-print(result.import_data('inventory_report/data/inventory.xml'))
