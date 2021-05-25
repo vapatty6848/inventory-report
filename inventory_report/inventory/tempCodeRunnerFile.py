@@ -1,1 +1,0 @@
-Inventory.read_csv(csv_file)
