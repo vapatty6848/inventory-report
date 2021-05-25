@@ -3,8 +3,8 @@ from collections import Counter
 
 
 class CompleteReport(SimpleReport):
-    @classmethod
-    def get_stock_by_company(self, data):
+    @staticmethod
+    def get_stock_by_company(data):
         """Gera relatório de produtos por companias"""
         list_name_companies = [
             data_report["nome_da_empresa"] for data_report in data
@@ -21,7 +21,7 @@ class CompleteReport(SimpleReport):
 
     @classmethod
     def generate(cls, data):
-        """Gera relatório de produtos por companias"""
+        """Gera o Simple report mais relatório de produtos por companias"""
         simple_generate = super().generate(data)
-        stock_by_company = CompleteReport.get_stock_by_company(data)
+        stock_by_company = cls.get_stock_by_company(data)
         return simple_generate + stock_by_company
