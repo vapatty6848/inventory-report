@@ -1,5 +1,4 @@
 from datetime import datetime
-# # https://pt.stackoverflow.com/questions/329389/listas-contar-quantidade-total-e-maior-repeti%C3%A7%C3%A3o
 import statistics
 
 
