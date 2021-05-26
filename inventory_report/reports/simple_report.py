@@ -1,7 +1,6 @@
 from collections import Counter
 from datetime import datetime
 
-
 class SimpleReport:
     def oldest_date(products_list):
         manufacturing_date = []
