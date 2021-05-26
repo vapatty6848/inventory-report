@@ -39,9 +39,9 @@ class Inventory:
 
         if file_type == "csv":
             return self.csv(path)
-        elif file_type == "json":
+        if file_type == "json":
             return self.json(path)
-        elif file_type == "xml":
+        if file_type == "xml":
             return self.xml(path)
 
     @classmethod
