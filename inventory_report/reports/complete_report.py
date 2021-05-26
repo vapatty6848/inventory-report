@@ -3,6 +3,7 @@ from collections import Counter
 
 
 class CompleteReport(SimpleReport):
+    @classmethod
     def generate(self, report):
         simple_report = SimpleReport.generate(report)
         companies = [company["nome_da_empresa"] for company in report]
