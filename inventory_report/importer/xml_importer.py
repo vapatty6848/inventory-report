@@ -3,7 +3,8 @@ from xml_to_dict import XMLtoDict
 
 
 class XmlImporter(Importer):
-    def import_data(file_path):
+    @classmethod
+    def import_data(cls, file_path):
         if not file_path.endswith(".xml"):
             raise ValueError("Arquivo inválido")
 

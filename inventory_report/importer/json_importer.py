@@ -3,7 +3,8 @@ import json
 
 
 class JsonImporter(Importer):
-    def import_data(file_path):
+    @classmethod
+    def import_data(cls, file_path):
         if not file_path.endswith(".json"):
             raise ValueError("Arquivo inválido")
 
