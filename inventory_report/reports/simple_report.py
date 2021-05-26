@@ -1,6 +1,7 @@
 from collections import Counter
 from datetime import datetime
 
+
 class SimpleReport:
     def oldest_date(products_list):
         manufacturing_date = []
@@ -35,14 +36,14 @@ class SimpleReport:
         most_repeated = occurrences.most_common(1)[0][0]
         return most_repeated
 
-  @staticmethod
-  def generateReport(products_list):
-      oldest = SimpleReport.oldest_date(products_list)
-      nearest = SimpleReport.nearest_expiration(products_list)
-      repeated = SimpleReport.repeated_company(products_list)
-      return (
-          f"Data de fabricação mais antiga: {oldest}\n"
-          f"Data de validade mais próxima: {nearest}\n"
-          f"Empresa com maior quantidade de produtos estocados: "
-          f"{repeated}\n"
-      )
+    @staticmethod
+    def generateReport(products_list):
+        oldest = SimpleReport.oldest_date(products_list)
+        nearest = SimpleReport.nearest_expiration(products_list)
+        repeated = SimpleReport.repeated_company(products_list)
+        return (
+            f"Data de fabricação mais antiga: {oldest}\n"
+            f"Data de validade mais próxima: {nearest}\n"
+            f"Empresa com maior quantidade de produtos estocados: "
+            f"{repeated}\n"
+        )
