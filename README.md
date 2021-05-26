@@ -445,11 +445,13 @@ Nota: após terminar o trabalho, para desativar o ambiente virtual digite `deact
 
 - A classe `InventoryRefactor` deve utilizar as classes definidas no requisito 6 para lidar com a lógica de importação, via **composição** no método `import_data`.
 
+- A classe `InventoryRefactor` deve receber por seu construtor a classe que será utilizada para lidar com a lógica de importação e armazenar em um atributo chamado `importer`.
+
 - As classes `InventoryIterator` e `InventoryRefactor` devem implementar corretamente a interface do padrão de projeto **Iterator**, de modo que seja possível iterar sobre os itens em estoque.
 
-- Ao importar os dados, os mesmos devem ser armazenados na instância, em adição aos itens já presentes naquela instância.
+- Ao importar os dados, os mesmos devem ser armazenados na instância, em adição aos itens já presentes naquela instância. O atributo de `InventoryRefactor` que armazena esses dados deve se chamar `data`.
 
-- As variáveis e os métodos devem ser públicos.
+- Os atributos e os métodos devem ser públicos.
 
 ✍️  Para testar manualmente você pode fazer:
 
@@ -475,35 +477,17 @@ first_item = next(iterator)
 
 ## Requisitos bônus:
 
-#### 8 - Preencha a função `main` no módulo `inventory_report/main.py` que ao inserir as informações necessárias, as ações adequadas devem ser disparadas.
+#### 8 - Preencha a função `main` no módulo `inventory_report/main.py` que, ao receber pela linha de comando o caminho de um arquivo e o tipo de relatório, devolve o relatório correto.
 
 - Deverá ser usado a classe `InventoryRefactor` para recuperar os dados e gerar o relatório.
 
-- Onde o resultado exibido no console deverá ser esses:
-  - Para o simples:
+- Ao chamar o comando no formato abaixo pelo terminal, deve ser impresso na tela o devido relatório no formato da saída dos requisitos `1` e `2`: 
 
-  ```json
-  Data de fabricação mais antiga: 2019-09-06
-  Data de validade mais próxima: 2022-09-17
-  Empresa com maior quantidade de produtos estocados: Target Corporation
-  ```
+```bash
+$ inventory_report <caminho_do_arquivo_input> <tipo_de_relatório>
+```
 
-  - Para o completo:
-
-  ```json
-  Data de fabricação mais antiga: 2019-09-06
-  Data de validade mais próxima: 2022-09-17
-  Empresa com maior quantidade de produtos estocados: Target Corporation
-
-  Produtos estocados por empresa:
-  - Target Corporation: 2
-  - Galena Biopharma: 3
-  - Cantrell Drug Company: 3
-  - Moore Medical LLC: 1
-  - REMEDYREPACK: 1
-  ```
-
-- Caso a tenha menos de três argumentos, exiba a mensagem de erro "Verifique os argumentos" na `stderr`.
+- Caso a chamada tenha menos de três argumentos (o nome `inventory_report` é considerado o primeiro argumento), exiba a mensagem de erro "Verifique os argumentos" na `stderr`.
 
 📌 A função `sys.argv` deve ser utilizada para receber a entrada de dados da pessoa usuária.
 
