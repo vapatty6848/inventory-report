@@ -11,7 +11,7 @@ class Inventory:
         with open(csv_file) as csvfile:
             reader = csv.DictReader(csvfile)
             return list(reader)
-    
+
     @classmethod
     def read_json(cls, json_file):
         with open(json_file) as jsonfile:
