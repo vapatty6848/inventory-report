@@ -22,8 +22,8 @@ class Inventory:
     def read_xml(cls, xml_file):
         with open(xml_file, 'r') as xmlfile:
             data = xmltodict.parse(xmlfile.read())
-            json = json.dumps(data)
-            return json.loads(json)['dataset']['record']
+            json_file = json.dumps(data)
+            return json.loads(json_file)['dataset']['record']
 
     @classmethod
     def import_data(cls, file, type):
