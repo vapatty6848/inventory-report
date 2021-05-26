@@ -32,7 +32,7 @@ class Inventory:
         return products
 
     @classmethod
-    def extract_info(cls, file_path):
+    def import_info(cls, file_path):
         if file_path.endswith(".csv"):
             products = cls.extract_from_CSV(file_path)
 
@@ -46,7 +46,7 @@ class Inventory:
 
     @classmethod
     def import_data(cls, file_path, report_type):
-        products = cls.extract_info(file_path)
+        products = cls.import_info(file_path)
 
         if report_type == "simples":
             return SimpleReport.generate(products)
