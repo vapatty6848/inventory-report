@@ -40,6 +40,7 @@ data = [
         },
       ]
 
+
 class SimpleReport:
     def oldest_date(products_list):
         manufacturing_date = []
