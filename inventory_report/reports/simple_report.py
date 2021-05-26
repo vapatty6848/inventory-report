@@ -3,8 +3,6 @@ from datetime import datetime
 
 
 class SimpleReport:
-        
-
     def oldest_date(products_list):
         manufacturing_date = []
         for product in products_list:
