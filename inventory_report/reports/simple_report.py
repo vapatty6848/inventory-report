@@ -76,7 +76,7 @@ class SimpleReport:
         return most_repeated
 
     @staticmethod
-    def generateReport(products_list):
+    def generate(products_list):
         oldest = SimpleReport.oldest_date(products_list)
         nearest = SimpleReport.nearest_expiration(products_list)
         repeated = SimpleReport.repeated_company(products_list)
