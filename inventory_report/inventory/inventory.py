@@ -15,12 +15,12 @@ class Inventory:
     @classmethod
     def read_json(cls, json_file):
         with open(json_file) as jsonfile:
-          reader = json.load(jsonfile)
-          return list(reader)
+            reader = json.load(jsonfile)
+            return list(reader)
 
     @classmethod
     def read_xml(cls, xml_file):
-        with open(xml_file, 'r') as xml_file:
+        with open(xml_file, 'r') as xmlfile:
             data = xmltodict.parse(xmlfile.read())
             json = json.dumps(data)
             return json.loads(json)['dataset']['record']
